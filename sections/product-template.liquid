@@ -1,0 +1,106 @@
+<div class="product-box">
+  <div class="inner-img-box">
+    <div class="main-img-wrapper">
+      <button class="arrow left">‹
+      </button>
+    <img src="{{ product.featured_image |  image_url: width: 500 }}" alt="{{product.title}}" class="main-img" id="main-product-image">
+    <button class="arrow right">›</button>
+    </div>
+    <div class="img-box">
+      <ul class="img-list">
+        {% for image in product.images limit: 10 %}
+          {% unless image == product.featured_image %}
+          <li>
+            <img src="{{image |  image_url: width: 150 }}" alt="" class="list-img" data-full="{{image |  image_url: width: 500 }}">
+          </li>
+          {% endunless %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="info-box">
+    <h1 class="product-text">{{product.title}}</h1>
+    <p class="product-price">{{product.price |  money}}</p>
+    {% if product.options_by_name['Color'] %}
+    <div class="info-color-box">
+      {% for variant in product.variants %}
+        {%  assign color = variant.option1 %}
+        {% if variant.image %}
+      <div class="color" style="background: {{color |  downcase}}" data-img="{{variant.image | image_url}}" data-title="{{variant.title}}"></div>
+        {% endif %}
+      {%endfor%}
+      {% endif %}
+    </div>
+    <p class="text-color" id="variantTitle">Color: <span>{{ product.selected_or_first_available_variant.option1 }}</span></p>
+    <button type="submit" class="product-btn">Add to cart</button>
+    <p class="product-description">{{product.description}}</p>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header">
+        <button class="">Age Group</button>
+        <i class="ri-arrow-down-s-line"></i>
+        </div>
+      <div class="accordion-content">
+        <ul class="accordion-list">
+          <li>Teens</li>
+          <li>Kids</li>
+          <li>Adults</li>
+          <li>5-6years</li>
+          <li>Todllers</li>
+          <li>Universal</li>
+        </ul>
+      </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+        <button class="">Skill Level</button>
+        <i class="ri-arrow-down-s-line"></i>
+        </div>
+      <div class="accordion-content">
+        <ul class="accordion-list">
+          <li>Intermediate</li>
+          <li>Expert</li>
+          <li>Beginner</li>
+        </ul>
+      </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+        <button class="">Snowboarding Style</button>
+        <i class="ri-arrow-down-s-line"></i>
+        </div>
+      <div class="accordion-content">
+        <ul class="accordion-list">
+          <li>Race snowboarding</li>
+          <li>All-mountain</li>
+        </ul>
+      </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+        <button class="">Snowboarding Design</button>
+        <i class="ri-arrow-down-s-line"></i>
+        </div>
+      <div class="accordion-content">
+        <ul class="accordion-list">
+          <li>Directional</li>
+          <li>Twin tip</li>
+          <li>Tapered</li>
+          <li>Directional Twin</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Template",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,5 @@
+# Ignore the entire .shopify directory
+/node_modules
+/.shopify
+/shopify.theme.dev.json
+.DS_Store
