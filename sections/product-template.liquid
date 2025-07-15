@@ -1,12 +1,19 @@
+{% assign product = all_products[section.settings.product] %}
+
 <div class="product-box">
   <div class="inner-img-box">
     <div class="main-img-wrapper">
       <button class="arrow left">‹
       </button>
-    <img src="{{ product.featured_image |  image_url: width: 500 }}" alt="{{product.title}}" class="main-img" id="main-product-image">
+    <img src="{{ product.featured_image |  image_url: width: 500 }}" alt="{{product.title}}" class="main-img" id="main-product-image"
+    data-full="{{product.featured_image |  image_url: width: 500 }}">
     <button class="arrow right">›</button>
     </div>
-    <div class="img-box">
+    <div class="img-box" 
+    data-slides="{{section.settings.slides_per_view}}"
+    data-space="{{section.settings.space_between}}"
+    data-arrows="{{section.settings.show_arrows}}"
+    data-pagination="{{section.settings.show_pagination}}">
       <ul class="img-list">
         {% for image in product.images limit: 10 %}
           {% unless image == product.featured_image %}
@@ -20,21 +27,31 @@
   </div>
   <div class="info-box">
     <h1 class="product-text">{{product.title}}</h1>
-    <p class="product-price">{{product.price |  money}}</p>
-    {% if product.options_by_name['Color'] %}
+    <p class="product-price" id="productPrice">{{product.selected_or_first_available_variant.price |  money_with_currency}}</p>
+    <form action="/cart/add" method="post">
+    <input type="hidden" name="id" id="variant-id" value="{{product.selected_or_first_available_variant.id}}">
+    
     <div class="info-color-box">
       {% for variant in product.variants %}
         {%  assign color = variant.option1 %}
         {% if variant.image %}
-      <div class="color" style="background: {{color |  downcase}}" data-img="{{variant.image | image_url}}" data-title="{{variant.title}}"></div>
+      <div class="color"
+       style="background: {{color |  downcase}}" 
+       data-img="{{variant.image | image_url}}" 
+       data-title="{{variant.title}}"
+       data-variant-id="{{variant.id}}"
+       data-price="{{variant.price |  money_with_currency}}">
+       </div>
         {% endif %}
       {%endfor%}
-      {% endif %}
     </div>
     <p class="text-color" id="variantTitle">Color: <span>{{ product.selected_or_first_available_variant.option1 }}</span></p>
     <button type="submit" class="product-btn">Add to cart</button>
+    </form>
     <p class="product-description">{{product.description}}</p>
 
+    {% assign age_group = product.metafields.category.age_group.value %}
+    {% if age_group %}
     <div class="accordion">
       <div class="accordion-item">
         <div class="accordion-header">
@@ -43,15 +60,13 @@
         </div>
       <div class="accordion-content">
         <ul class="accordion-list">
-          <li>Teens</li>
-          <li>Kids</li>
-          <li>Adults</li>
-          <li>5-6years</li>
-          <li>Todllers</li>
-          <li>Universal</li>
+          {% for item in age_group %}
+            <li>{{item}}</li>
+          {% endfor %}
         </ul>
       </div>
       </div>
+     {% endif %}
 
       <div class="accordion-item">
         <div class="accordion-header">
@@ -100,7 +115,48 @@
 
 {% schema %}
 {
-  "name": "Product Template",
-  "settings": []
+  "name": "Product Feature",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Выбери товар"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view",
+      "label": "Слайдов на экране",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "space_between",
+      "label": "Отспут между слайдами (px)",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Показать стрелки",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Показать пагинацию",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Feature"
+    }
+  ]
 }
 {% endschema %}

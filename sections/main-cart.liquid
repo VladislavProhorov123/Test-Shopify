@@ -1,0 +1,76 @@
+<h1 class="cart-title">Корзина</h1>
+
+{% if cart.item_count  > 0%}
+    <ul class="cart-list">
+    {% for item in cart.items %}
+        <li class="list-item">
+        <img src="{{item.image |  image_url: width: 250 }}" alt="{{item.product.title}}" class="cart-img">
+        <p class="product-name">{{item.product.title}}</p>
+        <p class="prodct-quantity">Количество: {{item.quantity}}</p>
+        <p class="product-cart-price">Цена: {{item.line_price |  money_with_currency}}</p>
+        {% if section.settings.show_remove_button %}
+        <form action="/cart/change" method="post">
+        <input type="hidden" name="id" value="{{item.key}}">
+        <input type="hidden" name="quantity" value="0">
+        <button class="product-delete" type="submit" name="update" value="Удалить">×</button>
+        </form>
+        {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+    <div class="box-checkout">
+    <p class="total-price">Всего товаров: <span>{{cart.item_count}}</span></p>
+    <p class="total-price">Итого: <span>{{cart.total_price |  money_with_currency}}</span></p>
+    <a href="/checkout" class="checkout"
+    style="background-color: {{section.settings.checkbox_button_bg_color}};
+    color: {{section.settings.checkbox_button_text_color}};">{{section.settings.checkbox_button_text}}</a>
+    </div>
+    {% else %}
+    <div class="cart-null">
+    <p class="cart-null">{{section.settings.empty_cart_message}}</p>
+    <i class="ri-shopping-cart-2-line"></i>
+    </div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Корзина",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_remove_button",
+            "label": "Показать кнопку удаление товара",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "checkbox_button_text",
+            "label": "Текст кнопки 'Оформить заказ'",
+            "default": "Оформить заказ"
+        },
+        {
+            "type": "color",
+            "id": "checkbox_button_bg_color",
+            "label": "Цвет кнопки 'Оформить заказ'",
+            "default": "#111111"
+        },
+        {
+            "type": "color",
+            "id": "checkbox_button_text_color",
+            "label": "Цвет текста 'Оформить заказ'",
+            "default": "#ffffff"
+        },
+        {
+            "type": "textarea",
+            "id": "empty_cart_message",
+            "label": "Сообщение для пустой корзины",
+            "default": "Ваша корзина пуста"
+        }
+    ],
+    "presets": [
+        {
+        "name": "Корзина"
+        }
+    ]
+}
+{% endschema %} 
