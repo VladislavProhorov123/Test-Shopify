@@ -1,0 +1,38 @@
+{% comment %} Файл кастосмной страницы 404  {% endcomment %}
+
+
+<section class="page-404">
+  <div class="container">
+    <h1 class="text-404">{{ section.settings.text-404 }}</h1>
+    <p class="subtext-404">{{ section.settings.subtext-404 }}</p>
+    {% if section.settings.show_btn %}
+      <a href="{{ routes.root_url }}" class="link-404">Вернуться на главную</a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "404",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_btn",
+        "label": "Показать кнопку Вернуться",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "text-404",
+        "label": "Заголовок",
+        "default": "Ой! Страница не найдена"
+      },
+      {
+        "type": "textarea",
+        "id": "subtext-404",
+        "label": "Подзаголовок",
+        "default": "Возможно, вы ввели неправильный адрес или страница была удалена."
+      }
+    ]
+  }
+{% endschema %}

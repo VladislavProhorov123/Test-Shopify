@@ -326,3 +326,47 @@ body {
   user-select: none;
   z-index: 0;
 }
+
+.page-404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.page-404 .container {
+  max-width: 600px;
+  padding: 20px;
+}
+
+.text-404 {
+  font-size: 3rem; 
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #111; 
+}
+
+.subtext-404 {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.link-404 {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #1E40AF;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.link-404:hover {
+  background-color: #1E3A8A;
+}
