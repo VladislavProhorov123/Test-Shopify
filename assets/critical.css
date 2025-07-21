@@ -10,7 +10,7 @@ body {
 }
 
 .product-box {
-  width: 1280px;
+  width: 1300px;
   display: flex;
   gap: 100px;
   align-items: center;
@@ -18,16 +18,14 @@ body {
   padding-inline: 10px;
   flex-wrap: wrap;
 }
-.inner-img-box {
-}
+
 .main-img {
   width: 500px;
   object-fit: cover;
   max-width: 100%;
   cursor: pointer;
 }
-.img-box {
-}
+
 .info-box {
   width: 600px;
 }
@@ -369,4 +367,68 @@ body {
 
 .link-404:hover {
   background-color: #1E3A8A;
+}
+
+.header .container {
+  max-width: 1300px;
+  padding-inline: 10px;
+  margin: 0 auto;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.menu-list {
+  display: flex;
+  list-style-type: none;
+  gap: 30px;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: #111;
+}
+
+.btn-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.header-btn1 {
+  display: inline-block;
+  width: 120px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  border: 1px solid #1E3A8A;
+}
+
+.header-btn1:hover {
+  background: #1E3A8A;
+  color: #fff;
+}
+
+.header-btn2 {
+  display: inline-block;
+  width: 80px;
+  height: 32px;
+  cursor: pointer;
+  background: #1E3A8A;
+  color: #fff;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.header-btn2:hover {
+  color: #111;
+  background: transparent;
+  border: 1px solid #1E3A8A;
 }

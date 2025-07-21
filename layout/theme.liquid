@@ -25,6 +25,7 @@
   </head>
 
   <body>
+    {% section 'header' %}
     {{ content_for_layout }}
 
     {{ 'main.js' |  asset_url |  script_tag }}

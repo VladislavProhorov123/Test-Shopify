@@ -1,0 +1,77 @@
+<header class="header" style="{% if section.settings.header-shadow %}box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);{% endif %}">
+  <div class="container">
+    <div class="header-inner">
+      <a href="{{ routes.root_url }}" class="logo">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo |  image_url: width: section.settings.logo-width }}" alt="{{ shop.name }}">
+        {% else %}
+          <span>{{ shop.name }}</span>
+        {% endif %}
+      </a>
+      <nav class="menu">
+        <ul class="menu-list">
+          <li class="menu-item">
+            <a href="/">Home</a>
+          </li>
+          <li class="menu-item">
+            <a href="/pages/about">About Us</a>
+          </li>
+          <li class="menu-item">
+            <a href="/pages/contact">Contacts</a>
+          </li>
+          <li class="menu-item">
+            <a href="/collections/all">Catalog</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="btn-box">
+        <button class="header-btn1">{{ section.settings.btn-1 }}</button>
+        <button class="header-btn2">{{ section.settings.btn-2 }}</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+  {
+    "name": "header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Логотип"
+      },
+      {
+        "type": "range",
+        "id": "logo-width",
+        "label": "Ширина логотипа (px)",
+        "min": 50,
+        "max": 300,
+        "step": 5,
+        "default": 100
+      },
+      {
+        "type": "checkbox",
+        "id": "header-shadow",
+        "label": "Показать тень у хедера",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "btn-1",
+        "label": "Текст кнопки 1",
+        "default": "Login"
+      }, {
+        "type": "text",
+        "id": "btn-2",
+        "label": "Текст кнопки 2",
+        "default": "Cart"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Default Header"
+      }
+    ]
+  }
+{% endschema %}
