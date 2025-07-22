@@ -1,0 +1,88 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer_inner">
+      <div class="footer-block1">
+        <a href="" class="logo">
+          <img src="{{ section.settings.logo |  image_url: width: 100 }}" alt="">
+        </a>
+        <p class="footer-subtext">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, minus.</p>
+        <div class="line"></div>
+        <p class="rights">Lorem ipsum dolor sit amet.</p>
+      </div>
+      <div class="footer-block">
+        <p class="footer-title">Follow Us</p>
+        <div class="footer-socials">
+            {% if section.settings.facebook_url != blank %}
+                <a href="{{ section.settings.facebook_url }}" class="social" target="_blank">
+                    <i class="ri-facebook-fill"></i>
+                </a>
+            {% endif %}
+            {% if section.settings.instagram_url != blank %}
+                <a href="{{ section.settings.instagram_url }}" class="social" target="_blank">
+                    <i class="ri-instagram-line"></i>
+                </a>
+            {% endif %}
+            {% if section.settings.youtube_url != blank %}
+                <a href="{{ section.settings.youtube_url }}" class="social" target="_blank">
+                    <i class="ri-youtube-fill"></i>
+                </a>
+            {% endif %}
+        </div>
+        <p class="footer-title">Call Us</p>
+        <p class="footer-number">{{ section.settings.phone_number }}</p>
+      </div>
+      <div class="footer-block">
+        <p class="footer-title">Product</p>
+        <ul class="footer-list">
+            <li class="footer-item"><a href="">Snowboard</a></li>
+            <li class="footer-item"><a href="">Lorem, ipsum.</a></li>
+            <li class="footer-item"><a href="">Lorem.</a></li>
+        </ul>
+      </div>
+    <div class="footer-block">
+        <p class="footer-title">Company</p>
+        <ul class="footer-list">
+            <li class="footer-item"><a href="">Home</a></li>
+            <li class="footer-item"><a href="">Contacts</a></li>
+            <li class="footer-item"><a href="">About Us</a></li>
+            <li class="footer-item"><a href="">Delivery</a></li>
+            <li class="footer-item"><a href="">More Info</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "footer",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Лого для футера"
+      },
+      {
+        "type": "url",
+        "id": "facebook_url",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "youtube_url",
+        "label": "YouTube URL"
+      },
+      {
+        "type": "number",
+        "id": "phone_number",
+        "label": "Номер телефона"
+      }
+    ]
+  }
+{% endschema %}
