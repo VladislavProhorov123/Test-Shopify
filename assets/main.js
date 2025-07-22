@@ -1,4 +1,7 @@
 const headers = document.querySelectorAll(".accordion-header");
+const modalClose = document.querySelector('.close-btn')
+const burgerMenu = document.querySelector('.burger-btn')
+const modal = document.querySelector('.modal-mobile')
 const mainImg = document.getElementById("main-product-image");
 headers.forEach((header) => {
   header.addEventListener("click", () => {
@@ -161,3 +164,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+modalClose.addEventListener('click', () => {
+  modal.style.display = 'none'
+})
+
+burgerMenu.addEventListener('click', (e) => {
+  e.stopPropagation();
+  modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+});
+
+document.addEventListener('click', (e) => {
+  if(!modal.contains(e.target) && e.target !== burgerMenu) {
+    modal.style.display = 'none'
+  }
+})

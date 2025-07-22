@@ -1,8 +1,32 @@
+@media (max-width: 1300px) {
+  .header.container {
+    max-width: 100%;
+  }
+  .product-box {
+    flex-direction: column;
+    width: 100%;
+  }
+  .list-img {
+    width: 80px;
+  }
+  .main-img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+
 @media (max-width: 1024px) {
     .main-img {
         max-width: 450px;
         width: 100%;
     }
+    .header.container {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -33,6 +57,11 @@
   }
   .info-box {
     width: 100%;
-    
+  }
+  .menu {
+    display: none;
+  }
+  .btn-box {
+    display: none;
   }
 }

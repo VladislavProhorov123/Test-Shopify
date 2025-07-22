@@ -72,7 +72,7 @@
         <i class="ri-arrow-down-s-line"></i>
       </div>
       {% assign fabric_color_raw = product.metafields.custom.fabric_color %}
-      {% assign fabric_colors = fabric_color_raw | split: '\n' %}
+      {% assign fabric_colors = fabric_color_raw | split: ',' %}
       {% if fabric_color_raw != blank %}
         <div class="accordion-content">
           <ul class="accordion-list">
@@ -90,7 +90,7 @@
         <i class="ri-arrow-down-s-line"></i>
       </div>
       {% assign age_group = product.metafields.custom.age %}
-      {% assign groups = age_group | split: '\n' %}
+      {% assign groups = age_group | split: ',' %}
       {% if age_group != blank %}
         <div class="accordion-content">
           <ul class="accordion-list">
@@ -108,7 +108,7 @@
         <i class="ri-arrow-down-s-line"></i>
       </div>
       {% assign skill_level = product.metafields.custom.skill %}
-      {% assign skills = skill_level | split: '\n' %}
+      {% assign skills = skill_level | split: ',' %}
       {% if skill_level != blank %}
         <div class="accordion-content">
           <ul class="accordion-list">
